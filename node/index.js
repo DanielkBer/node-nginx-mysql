@@ -11,14 +11,14 @@ const config = {
 const mysql = require('mysql');
 const connection = mysql.createConnection(config);
 
+
+const createTable = `CREATE TABLE IF NOT EXISTS people (name varchar(255));`
+connection.query(createTable);
 const sql = `INSERT INTO people(name) values('Daniel Bernardi');`
-connection.query(
-    sql
-);
+connection.query(sql);
 
 app.get('/', (req, res) => {
 
-    var result = 'teste';
     connection.query(
         'SELECT * FROM `people`;',
         function(err, results, fields) {
